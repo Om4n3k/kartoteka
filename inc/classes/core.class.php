@@ -35,16 +35,12 @@ class Core {
 
 	function createKartotekaTable($archiv=false) {
 		global $db,$user;
-		if(!$archiv) {
-			$addon="WHERE `archiv`='0'";
-		}
 		$sql="SELECT * FROM `lspd_kartoteka` $addon ORDER BY `id` DESC";
 		if($r=$db->query($sql)){
 			if($r->num_rows){
 				$t;
 				while($row=$r->fetch_assoc()){
 					$button_delete = "<a href=\"a--DeleteKartoteka\" uid=\"{$row['id']}\" class=\"btn btn-circle btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Usuń wpis w kartotece\"><i class=\"fas fa-fw fa-trash-alt\"></i></a>";
-					$button_archiv = "<a href=\"a--ArchivKartoteka\" uid=\"{$row['id']}\" class=\"btn btn-circle btn-warning\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Zarchiwizuj wpis\"><i class=\"far fa-fw fa-file-archive\"></i></a>";
 					$button_edit = "<a href=\"?page=kartoteka_edit&id={$row['id']}\" class=\"btn btn-circle btn-info\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj wpis\"><i class=\"far fa-fw fa-edit\"></i></a>";
 					$button_pederastian = "<a href=\"?page=pederastian_show&id={$row['pid']}\" class=\"btn btn-circle btn-info\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pokaż obywatela\"><i class=\"fas fa-fw fa-user\"></i></a>";
 					$policeman = $this->getUserData($row['admin']);
@@ -57,7 +53,6 @@ class Core {
             		  <td>{$row['id']}</td>
             		  <td>
             		  	$button_delete
-						$button_archiv
 						$button_edit
 						$button_pederastian
             		  </td>
@@ -78,16 +73,12 @@ class Core {
 
 	function createPederastianKartotekaTable($id,$archiv=false) {
 		global $db,$user,$config;
-		if(!$archiv) {
-			$addon="AND `archiv`='0'";
-		}
 		$sql="SELECT * FROM `lspd_kartoteka` WHERE `pid`='$id' $addon ORDER BY `id` DESC";
 		if($r=$db->query($sql)){
 			if($r->num_rows){
 				$t;
 				while($row=$r->fetch_assoc()){
 					$button_delete = "<a href=\"a--DeleteKartoteka\" uid=\"{$row['id']}\" class=\"btn btn-circle btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Usuń wpis w kartotece\"><i class=\"fas fa-fw fa-trash-alt\"></i></a>";
-					$button_archiv = "<a href=\"a--ArchivKartoteka\" uid=\"{$row['id']}\" class=\"btn btn-circle btn-warning\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Zarchiwizuj wpis\"><i class=\"far fa-fw fa-file-archive\"></i></a>";
 					if($user->level>=$config['permissions']['addKar'])$button_edit = "<a href=\"?page=kartoteka_edit&id={$row['id']}\" class=\"btn btn-circle btn-info\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj wpis\"><i class=\"far fa-fw fa-edit\"></i></a>";
 					$policeman = $this->getUserData($row['admin']);
 					$row['data'] = date('d.m.Y',$row['data']);
@@ -99,7 +90,6 @@ class Core {
             <td>{$row['id']}</td>
             <td>
             	$button_delete
-							$button_archiv
 							$button_edit
             </td>
             <td>{$row['powod']}</td>
@@ -156,9 +146,9 @@ class Core {
 	}
 
 	function hashPassword($string) {
-		//$salt=md5("vaVaSpokoZiom321");
-		//$string=md5($string);
-		//md5(md5($string.$salt));
+		$salt=md5("vaVaSpokoZiom321");
+		$string=md5($string);
+		md5(md5($string.$salt));
 		return $string;
 	}
 
