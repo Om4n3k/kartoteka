@@ -1,0 +1,267 @@
+<html>
+	<head>
+		<title>Route 68 - Kalkulator</title>
+		<meta charset="utf8"/>
+		<!-- javascript -->
+		<script>
+			var czydodalo = false;
+			// var totalPrice = 0;
+			// var totalTime = 0;
+			
+			// function arithmetic(operator) {
+			// 	const typedPrice = document.form.textviewPrice.value;
+			// 	const typedTime = document.form.textviewTime.value;
+			// 	switch (operator) {
+			// 		case '+':
+			// 			totalPrice += typedPrice;
+			// 			totalTime += typedTime;
+			// 			break;
+			// 		case '-':
+			// 			totalPrice -= typedPrice;
+			// 			totalTime -= typedTime;
+			// 			break;
+			// 		case '/':
+			// 			totalPrice /= typedPrice;
+			// 			totalTime /= typedTime;
+			// 			break;
+			// 		case '*':
+			// 			totalPrice *= typedPrice;
+			// 			totalTime *= typedTime;
+			// 			break;
+			// 	}
+			// }
+			function insert(num, time, name, flag){
+				let isArithmetic = false;
+				var ile = num;
+				if (num === '+' || num === '-' || num === '/' || num === '*') {
+					isArithmetic = true;
+				}
+				let localTime = time;
+				if (flag) {
+					ile = 500;
+					localTime = 5;
+					if (!czydodalo) {
+						ile = num;
+						localTime = time;
+						localName = name;
+					}
+					if (name){
+					document.form.textviewName.value += " | " + name;
+				}
+					document.form.textviewPrice.value = document.form.textviewPrice.value + ile;
+					document.form.textviewPrice.value += "+";
+					if (isArithmetic) {
+						document.form.textviewTime.value = document.form.textviewTime.value + num;
+					} else {
+						document.form.textviewTime.value = document.form.textviewTime.value + localTime;
+						document.form.textviewTime.value += "+";
+					}
+					czydodalo = true;
+				} else {
+					document.form.textviewPrice.value = document.form.textviewPrice.value + ile;
+					if (isArithmetic) {
+						document.form.textviewTime.value = document.form.textviewTime.value + num;
+					} else {
+						document.form.textviewTime.value = document.form.textviewTime.value + localTime;
+					}
+				}
+			}
+				// addTD();
+			function equal() {
+				var expPrice = document.form.textviewPrice.value;
+				var expTime = document.form.textviewTime.value;
+				document.form.textviewPrice.value = eval(expPrice);
+				document.form.textviewTime.value = eval(expTime);
+			}
+			function back() {
+				const priceField = document.form.textviewPrice;
+				const timeField = document.form.textviewTime;
+				const priceValue = priceField.value;
+				const timeValue = timeField.value;
+				const newPriceValue = priceValue.slice(0, -1);
+				const newTimeValue = timeValue.slice(0, -1);
+				priceField.value = newPriceValue;
+				timeField.value = newTimeValue;
+			}
+			function clean() {
+				document.form.textviewPrice.value = "";
+				document.form.textviewTime.value = "";
+				document.form.textviewName.value = "";
+				czydodalo = false;
+			}
+		</script>
+
+		<!-- CSS -->
+		<style>
+		* {
+			margin:0;
+			padding:0;
+		}
+		.button {
+			width: calc(100% - 15px);
+			height: 100%;
+			font-size: 13px;
+			color: #FFFFFF;
+			margin: 5px auto;
+			/*margin-left: 20;*/
+			border: 2px solid #464646;
+			cursor: pointer;
+			background: linear-gradient(to bottom, #191919, #191919);
+			white-space: pre-line;
+		}
+		td {
+			width: 235px;
+			height: 25px;
+		}
+		.textview {
+			width: calc(100% - 723px);
+			margin: 5px;
+			margin-left: 356px;
+			/*margin-left: 22;*/
+			font-size: 20px;
+			color: #FFFFFF;
+			padding: 5px;
+			background: #191919;
+			border: 2px solid #878787;
+			white-space: pre-line;
+		}
+		body {
+ 			 background-image: url("https://i.imgur.com/9O4sltl.jpg");
+ 			 opacity: 0.78;
+ 			 filter: alpha(opacity=50);
+		}
+		.main {
+			/*position: absolute;
+			top: 30%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);*/
+			/*background: linear-gradient(to bottom, #363636, #191919);*/
+			height: calc(95%);
+		}
+		/*.bg {
+			background: linear-gradient(to bottom, #363636, #191919);
+			height: 100%;
+		}*/
+		.myTable {
+			table-layout: fixed;
+			margin-left: 50px;
+			width: calc(100% - 400px);
+		}
+		.by {
+			text-align: center;
+/*		#lol td {
+			width: 30px;
+			height: 30px;
+			background-color: red;*/
+		}
+		</style>
+	</head>
+	<body>
+
+		<!-- Buttons -->
+		<!-- <div class="bg"></div> -->
+		<div class="main">
+			<form name="form">
+				<input class="textview" name="textviewPrice" placeholder="GRZYWNA" disabled>
+				<input class="textview" name="textviewTime" placeholder="MIESIĄCE" disabled>
+				<input class="textview" name="textviewName" placeholder="ZARZUTY" disabled>
+			</form>
+			<table class="myTable">
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="C" onclick="clean()"></td>
+					<td><input class="button" type="button" value="<" onclick="back()"></td>
+					<td><input class="button" type="button" value="+" onclick="insert('+')"></td>
+					<td><input class="button" type="button" value="=" onclick="equal()"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" style="height: 35px; /*width: 250px;*/ border-color: red;font-size: 15"  value="Poważne przestępstwa" disabled></td>
+					<td><input class="button" type="button" style="height: 35px; /*width: 250px;*/ border-color: limegreen;font-size: 15"  value="Handel & Dystrybucja" disabled></td>
+					<td><input class="button" type="button" style="height: 35px; /*width: 250px;*/ border-color: #FFC107;font-size: 15"  value="Wykroczenia drogowe" disabled></td>
+					<td><input class="button" type="button" style="height: 35px; /*width: 250px;*/ border-color: #0288D1;font-size: 15"  value="Inne" disbaled></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Mordersto bez powodu" onclick="insert(50000, 200, 'MORDERSTWO BEZ POWODU', true)"></td>
+					<td><input class="button" type="button" value="Przemyt nielegalnej broni" onclick="insert(15000, 40, 'PRZEMYT NIELEGALNEJ BRONI', true)"></td>
+					<td><input class="button" type="button" value="Brak prawa jazdy" onclick="insert(2500, 5, 'BRAK PRAWA JAZDY', true)"></td>
+					<td><input class="button" type="button" value="Opór przy aresztowaniu" onclick="insert(600, 5, 'OPÓR PRZY ARESZTOWANIU', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Mordersto w afekcie" onclick="insert(50000, 120, 'MORDERSTWO W AFEKCIE', true)"></td>
+					<td><input class="button" type="button" value="Sprzedaż nielegalnej broni" onclick="insert(10000, 25, 'SPRZEDAŻ NIELEGALNEJ BRONI', true)"></td>
+					<td><input class="button" type="button" value="Ucieczka z miejsca wypadku" onclick="insert(1000, 15, 'UCIECZKA Z MIEJSCA WYPADKU', true)"></td>
+					<td><input class="button" type="button" value="Utrudnianie pracy policji" onclick="insert(1000, 10, 'UTRUDNIANIE PRACY POLICJI', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Próba morderstwa" onclick="insert(20000, 50, 'PRÓBA MORDERSTWA', true)"></td>
+					<td><input class="button" type="button" value="Posiadanie nielegalnej broni" onclick="insert(2500, 5, 'POSIADANIE NIELEGALNEJ BRONI', true)"></td>
+					<td><input class="button" type="button" value="Kradzież pojazdu" onclick="insert(1500, 10, 'KRADZIEŻ POJAZDU', true)"></td>
+					<td><input class="button" type="button" value="Brak informacji o posiadaniu broni" onclick="insert(1500, 0, 'BRAK INFORMACJI O POSIADANIU BRONI', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Groźby karalne" onclick="insert(7000, 25, 'GROŹBY KARALNE', true)"></td>
+					<td><input class="button" type="button" value="Posiadanie broni bez licencji" onclick="insert(2500, 5, 'POSIADANIE BRONI BEZ LICENCJI', true)"></td>
+					<td><input class="button" type="button" value="Próba kradzieży pojazdu" onclick="insert(1000, 10, 'PRÓBA KRADZIEŻY POJAZDU', true)"></td>
+					<td><input class="button" type="button" value="Łapówka" onclick="insert(5000, 10, 'ŁAPÓWKA', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Napad z bronią palną" onclick="insert(9000, 130, 'NAPAD Z BRONIĄ PALNĄ', true)"></td>
+					<td><input class="button" type="button" value="Nielegalne użycie broni" onclick="insert(1000, 5, 'NIELEGALNEJ UŻYCIE BRONI', true)"></td>
+					<td><input class="button" type="button" value="Jazda pod wpływem" onclick="insert(3000, 10, 'JAZDA POD WPŁYWEM', true)"></td>
+					<td><input class="button" type="button" value="Odmowa okazania dokumentu" onclick="insert(1500, 5, 'ODMOWA OKAZANIA DOKUMENTU', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Napad na funkcjonariusza" onclick="insert(15000, 60, 'NAPAD NA FUNCKJONARIUSZA', true)"></td>
+					<td><input class="button" type="button" value="Posiadanie narkotyków" onclick="insert(2500, 5, 'POSIADANIE NARKOTYKÓW', true)"></td>
+					<td><input class="button" type="button" value="Spowodowanie wypadku pod wpływem" onclick="insert(6000, 30, 'SPOWODOWANIE WYPADKU POD WPŁYWEM', true)"></td>
+					<td><input class="button" type="button" value="Składanie fałszywych zeznań" onclick="insert(3000, 15, 'SKŁADANIE FAŁSZYWYCH ZEZNAŃ', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Napad na bank" onclick="insert(50000, 30, 'NAPAD NA BANK', true)"></td>
+					<td><input class="button" type="button" value="Posiadanie dużej ilości narkotyków" onclick="insert(5000, 20, 'POSIADANIE DUŻEJ ILOŚCI NARKOTYKÓW', true)"></td>
+					<td><input class="button" type="button" value="Prowadzenie skradzionego pojazdu" onclick="insert(6000, 30, 'PROWADZENIE SKRADZIONEGO POJAZDU', true)"></td>
+					<td><input class="button" type="button" value="Posiadanie wytrychów" onclick="insert(600, 5, 'POSIADANIE WYTRYCHÓW', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Napad na jubilera" onclick="insert(50000, 30, 'NAPAD NA JUBILERA', true)"></td>
+					<td><input class="button" type="button" value="Sprzedaż narkotyków" onclick="insert(7000, 35, 'SPRZEDAŻ NARKOTYKÓW', true)"></td>
+					<td><input class="button" type="button" value="Ucieczka i unikanie policji" onclick="insert(6000, 30, 'UCIECZKA I UNIKANIE POLICJI', true)"></td>
+					<td><input class="button" type="button" value="Pobicie" onclick="insert(1000, 10, 'Pobicie', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Napad na sklep" onclick="insert(5000, 10, 'NAPAD NA SKLEP', true)"></td>
+					<td><input class="button" type="button" value="Dystrybucja narkotyków" onclick="insert(15000, 50, 'DYSTRYBUCJA NARKOTYKÓW', true)"></td>
+					<td><input class="button" type="button" value="Spow. wypadku z ofiarami" onclick="insert(4500, 25, 'SPOWODOWANIE WYPADKU Z OFIARAMI', true)"></td>
+					<td><input class="button" type="button" value="Kradzież" onclick="insert(250, 5, 'KRADZIEŻ', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Porwanie" onclick="insert(5000, 10, 'PORWANIE', true)"></td>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Nieudzielenie pomocy poszkodowanemu" onclick="insert(2000, 10, 'NIEUDZIELENIE POMOCY POSZKODOWANEMU', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Napaść" onclick="insert(2500, 25, 'NAPAŚĆ', true)"></td>
+				</tr>
+				<tr>
+					<td invisible> </td>
+					<td><input class="button" type="button" value="Nieumyślne spowodowanie śmierci" onclick="insert(15000, 60, 'NIEUMYŚLNE SPOWODOWANIE ŚMIERCI', true)"></td>
+				</tr>
+			</table>
+		</div>
+		<h2><font color="#434343">Created by Sokol</h2>
+		<span>Copyright &copy; LSPD & BCSO 2019</font></span>
+	</body>
+</html>
+
