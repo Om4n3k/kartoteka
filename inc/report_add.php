@@ -17,7 +17,6 @@ try {
 	$core = new Core();
 	if($user->loginError) throw new Exception(USER_NOT_LOGGED_IN);
 	if($user->level<$config['permissions']['reportAdd']) throw new Exception(NO_PERMISSION);
-	
 	$text = htmlentities($_POST['r_text'],ENT_QUOTES,'utf-8');
     if(empty($text)) throw new Exception(EMPTY_VALUE);
     

@@ -15,7 +15,7 @@
 			<span class="float-right">Dodano: <?=$report['date']?></span>
   	</div>
   	<div class="card-body">
-    	<?=$report['text']?>
+    	<?=str_replace(array("\r\n", "\r", "\n"), "<br />", $report['text'])?>
   	</div>
 	</div>
 </div>
