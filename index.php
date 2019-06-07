@@ -170,7 +170,7 @@
             </div>
             <div class="col-md">
               <div class="copyright text-center text-md-right my-auto">
-                <span>v1.2.0.0</span>
+                <span>v1.2.0.1</span>
               </div>
             </div>
           </div>

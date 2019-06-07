@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-md">
             <div class="form-group">
-              <textarea type="text" required class="form-control form-control-user" name="r_text" placeholder="Treść raportu"></textarea>
+              <textarea type="text" rows="28" required class="form-control" name="r_text" placeholder="Treść raportu"></textarea>
             </div>
           </div>
         </div>
