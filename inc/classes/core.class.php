@@ -1,5 +1,30 @@
 <?php
 class Core {
+	public $users_count;
+	public $card_count;
+	public $report_count;
+
+	function __construct() {
+		global $db;
+		$sql = "SELECT  (
+			SELECT COUNT(*)
+			FROM   lspd_users
+			) AS count1,
+			(
+			SELECT COUNT(*)
+			FROM   lspd_reports
+			) AS count2,
+			(
+			SELECT COUNT(*)
+			FROM   lspd_kartoteka
+			) AS count3
+		FROM    dual";
+		$r=$db->query($sql)->fetch_Assoc();
+		$this->users_count = $r['count1'];
+		$this->report_count = $r['count2'];
+		$this->card_count = $r['count3'];
+	}
+
 	function createUsersTable() {
 		global $db,$user;
 		$sql="SELECT * FROM `lspd_users`";

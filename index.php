@@ -97,13 +97,13 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="?page=reports">
-          <i class="far fa-fw fa-flag"></i>
+          <i class="fas fa-clipboard-list fa-fw"></i>
           <span>Przegląd</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="?page=report_add">
-          <i class="fas fa-fw fa-flag"></i>
+        <i class="far fa-clipboard fa-fw"></i>
           <span>Dodaj wpis</span>
         </a>
       </li>
@@ -170,7 +170,7 @@
             </div>
             <div class="col-md">
               <div class="copyright text-center text-md-right my-auto">
-                <span>v1.2.0.1</span>
+                <span>v1.2.1.0</span>
               </div>
             </div>
           </div>
