@@ -151,11 +151,12 @@ class Core {
 						<td>{$policeman['name']}</td>
 						<td>{$policeman['surname']}</td>
 						<td>{$row['date']}</td>
+						<td>{$row['title']}</td>
 					";
 				}
 				return $t;
-			} return "<tr><td colspan=\"5\">Brak raportów</td></tr>";
-		} return "<tr><td colspan=\"5\">Błąd</td></tr>";
+			} return "<tr><td colspan=\"6\">Brak raportów</td></tr>";
+		} return "<tr><td colspan=\"6\">Błąd</td></tr>";
 	}
 
 	function getUserLevel($id){

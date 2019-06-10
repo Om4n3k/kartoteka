@@ -18,11 +18,12 @@ try {
 	if($user->loginError) throw new Exception(USER_NOT_LOGGED_IN);
 	if($user->level<$config['permissions']['reportAdd']) throw new Exception(NO_PERMISSION);
 	$text = htmlentities($_POST['r_text'],ENT_QUOTES,'utf-8');
+	$title = htmlentities($_POST['r_title'],ENT_QUOTES,'utf-8');
     if(empty($text)) throw new Exception(EMPTY_VALUE);
     
     $time = time();
 
-	$sql = "INSERT INTO `lspd_reports`(`policeman_id`, `text`, `date`) VALUES ('{$user->id}', '$text', '$time')";
+	$sql = "INSERT INTO `lspd_reports`(`policeman_id`, `text`, `title`, `date`) VALUES ('{$user->id}', '$text', '$title', '$time')";
 	if($db->query($sql)) {
 		echo json_encode(['result'=>true]);
     } else throw new Exception(MYSQL_QUERY_ERROR);
