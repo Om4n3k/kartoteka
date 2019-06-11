@@ -510,4 +510,33 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(this).removeClass('active');
 	});
+
+	$('a[href=a--SearchCar').click(function(){
+		let searchType = $("#searchCar--Type").val();
+		let searchValue = $("#searchCar--Value").val();
+		$.ajax({
+			url: "inc/searchCar.php",
+			type: "POST",
+			dataType: "json",
+			data: `&type=${searchType}&value=${searchValue}`,
+			success: function(msg) {
+				$.notify({
+					message: msg.reason 
+				},{
+					// settings
+					type: (msg.result) ? 'success' : 'danger',
+					placement: {
+						from: "top",
+						align: "center"
+					},
+				});
+				$('#searchCar--ResultTable').html(msg.output);
+				$('#searchCar--Result').fadeIn(500);
+			},
+			error: function() {
+				alert('error');
+			}
+        });
+		return false;
+	});
 });

@@ -5,6 +5,7 @@
   require_once("inc/classes/core.class.php");
   try{
     $db = new mysqli($config['db']['host'],$config['db']['user'],$config['db']['password'],$config['db']['name']);
+    $route_db = new mysqli($config['route_db']['host'],$config['route_db']['user'], $config['route_db']['password'],$config['route_db']['name']);
     if($db->connect_errno) throw new Exception($db->connect_errno);
     $user = new User(0,$_SESSION['id']);
     $core = new Core();
@@ -64,6 +65,15 @@
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-home"></i>
           <span>Strona Glowna</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="?page=cars">
+          <i class="fas fa-car fa-fw"></i>
+          <span>Baza pojazdów</span></a>
       </li>
 
       <!-- Divider -->
@@ -172,7 +182,7 @@
             </div>
             <div class="col-md">
               <div class="copyright text-center text-md-right my-auto">
-                <span>v1.2.1.0</span>
+                <span>v1.3.0.0</span>
               </div>
             </div>
           </div>
@@ -194,7 +204,6 @@
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -204,6 +213,7 @@
 
   <script src="js/notify.min.js"></script>
   <script src="js/ajax.js"></script>
+  <script src="js/pagination.js"></script>
 
   <script type="text/javascript">
     $(function () {

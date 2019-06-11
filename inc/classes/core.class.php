@@ -159,6 +159,29 @@ class Core {
 		} return "<tr><td colspan=\"6\">Błąd</td></tr>";
 	}
 
+	function createCarDatabaseTable() {
+		global $db;
+		$sql = "SELECT user.firstname, user.lastname, veh.plate FROM `users` AS user, `owned_vehicles` AS veh WHERE user.identifier = veh.owner ORDER BY veh.plate ASC";
+		if($r=$db->query($sql)){
+			if($r->num_rows){
+				$t;
+				while($row=$r->fetch_assoc()){
+					$policeman = $this->getUserData($row['policeman_id']);
+					$row['date'] = date('H:i d/m/y',$row['date']);
+					$button_goto = "<a href=\"?page=report_view&id={$row['id']}\" class=\"btn btn-circle btn-info\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Przejdź do wpisu\"><i class=\"fas fa-external-link-alt fa-fw\"></i></a>";
+					$button_delete = "<a href=\"a--DeleteRaport\" id=\"{$row['id']}\" class=\"btn btn-circle btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Usuń wpis\"><i class=\"fas fa-trash-alt fa-fw\"></i></i></a>";
+					$t.="
+					<tr>
+						<td>{$row['plate']}</td>
+						<td>{$row['firstname']}</td>
+						<td>{$row['lastname']}</td>
+					";
+				}
+				return $t;
+			} return "<tr><td colspan=\"3\">Brak pojazdów</td></tr>";
+		} return "<tr><td colspan=\"3\">Błąd</td></tr>";
+	}
+
 	function getUserLevel($id){
 		global $db;
 		$sql="SELECT `level` as `level` FROM `lspd_users` WHERE `id`='$id'";
