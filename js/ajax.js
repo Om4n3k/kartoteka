@@ -511,7 +511,7 @@ $(document).ready(function(){
 		$(this).removeClass('active');
 	});
 
-	$('a[href=a--SearchCar').click(function(){
+	function searchCar() {
 		let searchType = $("#searchCar--Type").val();
 		let searchValue = $("#searchCar--Value").val();
 		$.ajax({
@@ -537,6 +537,21 @@ $(document).ready(function(){
 				alert('error');
 			}
         });
+	}
+
+	$('a[href=a--SearchCar').click(function(){
+		searchCar();
 		return false;
+	});
+
+	$("#searchCar--Value").bind("enterKey",function(e){
+		searchCar();
+		return false;
+	});
+	$("#searchCar--Value").keyup(function(e){
+		if(e.keyCode == 13)
+		{
+			$(this).trigger("enterKey");
+		}
 	});
 });

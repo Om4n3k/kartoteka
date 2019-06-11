@@ -212,8 +212,8 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <script src="js/notify.min.js"></script>
-  <script src="js/ajax.js?v=1301"></script>
-  <script src="js/pagination.js?v=1301"></script>
+  <script src="js/ajax.js?v=1302"></script>
+  <script src="js/pagination.js?v=1302"></script>
 
   <script type="text/javascript">
     $(function () {
