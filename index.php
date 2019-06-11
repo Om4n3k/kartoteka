@@ -182,7 +182,7 @@
             </div>
             <div class="col-md">
               <div class="copyright text-center text-md-right my-auto">
-                <span>v1.3.0.0</span>
+                <span><?=$config['version']?></span>
               </div>
             </div>
           </div>
@@ -212,8 +212,8 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <script src="js/notify.min.js"></script>
-  <script src="js/ajax.js"></script>
-  <script src="js/pagination.js"></script>
+  <script src="js/ajax.js?v=1301"></script>
+  <script src="js/pagination.js?v=1301"></script>
 
   <script type="text/javascript">
     $(function () {

@@ -20,7 +20,7 @@ try {
     if($type==0) $where = "user.lastname";
     else $where = "veh.plate";
 
-    $sql = "SELECT veh.plate, user.firstname, user.lastname FROM `owned_vehicles` AS veh, `users` as user WHERE user.identifier=veh.owner AND $where LIKE '%$value%'";
+    $sql = "SELECT veh.plate, user.firstname, user.lastname FROM `owned_vehicles` AS veh, `users` as user WHERE user.identifier=veh.owner AND LOWER($where) LIKE '%$value%'";
 
     $r=$route_db->query($sql);
     if($r->num_rows) {
